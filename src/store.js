@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux'
 import counter, { incAction, decAction, resetAction, substractAction, addAction as addActionCounter } from './state/counter'
 import add from './state/add'
 import calculator from './state/calculator'
-import { inputAction } from './state/calculator'
+import { inputAction, addAction } from './state/calculator'
 const reducer = combineReducers({
     add,
     counter,
@@ -24,21 +24,26 @@ const getDiplayedVal = () => {
   
   store.dispatch(inputAction(6))
   if (getDiplayedVal() !== 6) {
-    throw new Error('Input not works! Shoud be 6')
+    throw new Error('Input not works! Should be 6!')
   }
   store.dispatch(inputAction(7))
   if (getDiplayedVal() !== 67) {
-    throw new Error('Input not works! Shoud be 67')
+    throw new Error('Input not works! Should be 67!')
   }
-
-
-
-window.inputAction = (number) => store.dispatch(inputAction(number))
-
-window.state = () => {
-    const state = store.getState().calculator
-    console.log({
-        ...state,
-        display: state.isResultsIsShown ? state.result : state.input
-    })
-}
+  store.dispatch(inputAction(3))
+  if (getDiplayedVal() !== 673) {
+    throw new Error('Input not works! Should be 673!')
+  }
+  
+  store.dispatch(addAction())
+  if (getDiplayedVal() !== 673) {
+    throw new Error('Add not works! Should be 673!')
+  }
+  store.dispatch(inputAction(3))
+  if (getDiplayedVal() !== 3) {
+    throw new Error('Input not works! Should be 3!')
+  }
+  store.dispatch(addAction())
+  if (getDiplayedVal() !== 676) {
+    throw new Error('Add not works! Should be 676!')
+  }
