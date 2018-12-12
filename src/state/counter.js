@@ -54,7 +54,7 @@ export default (state = initialState, action) => {
         case RESET:
             return {
                 ...state,
-                number: state.number = 1
+                number: state.number = 0
             }
         case ADD:
             return {
