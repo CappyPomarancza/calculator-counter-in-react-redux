@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { incAction, decAction, resetAction } from '../state/counter'
+import { incAction, decAction, resetAction, substractAction, addAction } from '../state/counter'
 
 const Counter = (props) => (
     <div>
@@ -20,6 +20,16 @@ const Counter = (props) => (
         >
             RESET
                 </button>
+        <input
+            type={'number'}
+            value={props.number}
+        ></input>
+        <button
+            onClick={props.addHandler}
+        >ADD</button>
+        <button
+            onClick={props.substractHandler}
+        >SUBSTRACT</button>
     </div>
 )
 
@@ -30,7 +40,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     incHandler: () => dispatch(incAction()),
     decHandler: () => dispatch(decAction()),
-    resetHandler: () => dispatch(resetAction())
+    resetHandler: () => dispatch(resetAction()),
+    substractHandler: () => dispatch(substractAction()),
+    addHandler: () => dispatch(addAction())
 })
 
 export default connect(
